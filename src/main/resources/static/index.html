@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorator="layouts/default">
+<head>
+<meta charset="UTF-8">
+<title>Toast UI</title>
+  <!-- Editor's Dependecy Style -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.48.4/codemirror.min.css"
+  />
+  <!-- Editor's Style -->
+  <link rel="stylesheet" href="https://uicdn.toast.com/editor/latest/toastui-editor.min.css" />
+</head>
+<body>
+	<h2>Toast-ui Editor</h2>
+	<form action="/wiki" method="post">
+		<div id="editor"></div>
+		<input type="submit"/>
+	</form>
+	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+	<script src="https://uicdn.toast.com/editor/latest/toastui-jquery-editor.min.js"></script>
+</body>
+
+<script type="text/javascript">
+const editor = new toastui.Editor({
+    el: document.querySelector('#editor'),
+	height: '500px',
+	initialEditType: 'markdown',
+	previewStyle: 'vertical',
+	initialValue: '# 테스트\n\n테스트 중\n줄바꿈\n\n1. 뭐지\n2. 어떻게'
+});
+</script>
+</html>
