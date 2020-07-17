@@ -14,10 +14,9 @@
 </head>
 <body>
 	<h2>Toast-ui Editor</h2>
-	<form action="/wiki" method="post">
-		<div id="editor"></div>
-		<input type="submit"/>
-	</form>
+	<div id="editor"></div>
+	<button onclick="submitEditor()">전송</button>
+	
 	<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 	<script src="https://uicdn.toast.com/editor/latest/toastui-jquery-editor.min.js"></script>
 </body>
@@ -27,8 +26,20 @@ const editor = new toastui.Editor({
     el: document.querySelector('#editor'),
 	height: '500px',
 	initialEditType: 'markdown',
-	previewStyle: 'vertical',
-	initialValue: '# 테스트\n\n테스트 중\n줄바꿈\n\n1. 뭐지\n2. 어떻게'
+	previewStyle: 'vertical'//,
+	//initialValue: '# 테스트\n\n테스트 중\n줄바꿈\n\n1. 뭐지\n2. 어떻게'
 });
+
+function submitEditor() {
+	var xhr = new XMLHttpRequest();
+	xhr.open("POST", "/wiki");
+	xhr.setRequestHeader("Content-Type", "application/json");
+	var data = {
+		writer : 'test',
+		content : editor.getMarkdown()
+	};
+	
+	xhr.send(JSON.stringify(data));
+}
 </script>
 </html>
